@@ -1,4 +1,4 @@
-# PensLog ✍️
+# PensLog 
 
 **PensLog** is a modern blogging platform designed for developers and writers who want a sleek, fast, and minimal space to log their thoughts — inspired by `console.log` but made for humans.
 
