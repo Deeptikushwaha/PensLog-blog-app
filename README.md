@@ -37,3 +37,6 @@ Write, log, and share — all in a smooth, distraction-free experience.
 
 
 > ✨ More details (API endpoints, features, contributing guidelines) will be added as development progresses.
+
+postgressql connection string - postgresql://penlogs_owner:npg_MpnE45CQROWk@ep-cold-waterfall-a5mk435x-pooler.us-east-2.aws.neon.tech/penlogs?sslmode=require
+connection pool string via prisma accelerate
