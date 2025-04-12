@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import {cors} from 'hono/cors'
 import { userRouter} from './routes/userroute';
-//import { postRouter } from './routes/blogroute';
+import { postRouter } from './routes/blogroute';
 
 const app = new Hono<{
   Bindings: {
@@ -12,7 +12,7 @@ const app = new Hono<{
 
 app.use('/*', cors())
 app.route("/api/v1/user", userRouter);
-//app.use('api/v1/post', blogRouter)
+app.route("/api/v1/post", postRouter);
 
 // app.post('/api/v1/user/signup', (c) => {
 //   return c.text('Hello Hono!')
