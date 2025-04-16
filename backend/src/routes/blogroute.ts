@@ -3,6 +3,7 @@ import {PrismaClient} from '@prisma/client/edge'
 import {withAccelerate} from '@prisma/extension-accelerate'
 import {decode, sign, verify} from 'hono/jwt';
 import {hashpass, comparepass} from '../hashing/hashpswd'
+import {createBlogInput, updateBlogInput} from '@deeptikushwaha/penslog-common'
 
 export const postRouter = new Hono<{
     Bindings: {
@@ -74,6 +75,11 @@ postRouter.post('/blog', async(c)=>{
 
     try{
         const body = await c.req.json();
+        const {success} = createBlogInput.safeParse(body);
+        if(!success){
+            c.status(400);
+            return c.json({message: 'Invalid input'});
+        }
         console.log('Request body:', body);  
         const author = await prisma.user.findFirst({
             where: {
@@ -112,6 +118,11 @@ postRouter.put('/update',async(c)=>{
 
     try{
         const body = await c.req.json()
+        const {success} = updateBlogInput.safeParse(body);
+        if(!success){
+            c.status(400);
+            return c.json({message: 'Invalid input'});
+        }  0
         console.log('Request body:', body);
         // Validate required fields
         if (!body.id) {

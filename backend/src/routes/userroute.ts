@@ -3,6 +3,7 @@ import {PrismaClient} from '@prisma/client/edge'
 import {withAccelerate} from '@prisma/extension-accelerate'
 import {sign, verify } from 'hono/jwt';
 import {hashpass, comparepass} from '../hashing/hashpswd'
+import {signUpInput, signInInput} from '@deeptikushwaha/penslog-common'
 
 export const userRouter = new Hono<{
     Bindings: {
@@ -22,11 +23,11 @@ const prisma = new PrismaClient({
   }).$extends(withAccelerate());
 
   const body = await c.req.json().catch(()=>({}));
-//   const {success} = signupInput.safeParse(body);
-//   if(!success){
-//     c.status(411);
-//     return c.json({message: 'Invalid input'})
-//   }
+  const {success} = signupInput.safeParse(body);
+  if(!success){
+    c.status(411);
+    return c.json({message: 'Invalid input'})
+  }
 
 try {
     const finduser = await prisma.user.findFirst({
@@ -67,11 +68,11 @@ userRouter.post('/signin',async(c)=>{
     }).$extends(withAccelerate());
 
     const body = await c.req.json()
-    // const {success} = signInInput.safeParse(body);
-    // if(!success){
-    //     c.status(411)
-    //     return c.json({message: 'Invalid input'})
-    // }
+    const {success} = signInInput.safeParse(body);
+    if(!success){
+        c.status(411)
+        return c.json({message: 'Invalid input'})
+    }
 
     try{
         const user = await prisma.user.findFirst({

@@ -19,6 +19,8 @@
 
 Currently in active development. Basic structure is being set up — APIs, authentication, and core features coming soon.
 
+Backend is up - https://backend.deeptikushwaha140.workers.dev/
+
 ---
 
 ## 📦 Setup Instructions
