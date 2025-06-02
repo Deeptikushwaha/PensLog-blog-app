@@ -23,7 +23,7 @@ const prisma = new PrismaClient({
   }).$extends(withAccelerate());
 
   const body = await c.req.json().catch(()=>({}));
-  const {success} = signupInput.safeParse(body);
+  const {success} = signUpInput.safeParse(body);
   if(!success){
     c.status(411);
     return c.json({message: 'Invalid input'})

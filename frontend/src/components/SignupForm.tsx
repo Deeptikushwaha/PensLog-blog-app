@@ -2,24 +2,28 @@ import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SERVER_URL } from "../config";
+import { SignUpInput } from "@deeptikushwaha/penslog-common";
 
 export const SignupForm = ({type}: {type:"signup" | "signin"}) => {
-
-    const [postInputs, setPostInputs] = useState({
+    const navigate = useNavigate();
+    const [postInputs, setPostInputs] = useState<SignUpInput>({
         name: "",
         email: "",
-        password: ""
+        password: "" 
     });
 
     async function sendRequest() {
         try{
             const response =await axios.post(`${SERVER_URL}/api/v1/user/${type==="signup" ? "signup" : "signin"}`, postInputs);
+            const {jwt} = response.data;
+            localStorage.setItem("token",jwt);
+            navigate("/blogs")
         } catch(e) {
             alert("Error while signing up")
         }
     }
-        return (
-        <div className="h-screeen flex justify-center flex-col">
+
+        return <div className="h-screen flex justify-center flex-col">
             <div className="flex justify-center">
                 <div>
                     <div className="px-10">
@@ -44,12 +48,11 @@ export const SignupForm = ({type}: {type:"signup" | "signin"}) => {
                         <LabelledInput label="Password" placeholder="Enter your password" onChange={(e)=>{
                             setPostInputs({...postInputs, password: e.target.value})
                         }}/>
-                        <button onClick={sendRequest} type="button" className=""/>
+                        <button onClick={sendRequest} type="button" className="mt-8 w-full bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">{type==="signup"?"Sign up":"Sign in"}</button>
                     </div>
                 </div>
             </div>
         </div>
-    )
 }
 
 interface LabelledInputType {
