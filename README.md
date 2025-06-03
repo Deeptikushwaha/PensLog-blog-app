@@ -16,13 +16,6 @@
 
 ---
 
-## 🚧 Project Status
-
-Currently in active development. Basic structure is being set up — APIs, authentication, and core features coming soon.
-
-Backend is up - https://backend.deeptikushwaha140.workers.dev/
-
----
 
 ## 📦 Setup Instructions
 
@@ -185,7 +178,7 @@ The backend is deployed on Cloudflare Workers. To deploy:
    ```bash
    npm run deploy
    ```
-
+Backend is up - https://backend.deeptikushwaha140.workers.dev/
 ### Frontend
 
 The frontend can be deployed to any static hosting service (Vercel, Netlify, etc.).
