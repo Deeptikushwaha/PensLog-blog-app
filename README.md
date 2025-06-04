@@ -188,6 +188,7 @@ The frontend can be deployed to any static hosting service (Vercel, Netlify, etc
 ## 💡 Features
 
 - User authentication
+- JWT Auth with Zod validation
 - Create, read, update blogs
 - Responsive design
 - Real-time updates
